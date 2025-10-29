@@ -1,8 +1,5 @@
-__pycache__
-*.pyc
-*.pyo
-*.db
-.env
-venv/
-pipenv/
-
+node_modules
+build
+.dockerignore
+Dockerfile
+npm-debug.log

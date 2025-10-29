@@ -1,37 +1,22 @@
-# STAGE 1: Build Backend
+# STAGE 1: Build Frontend
 
-FROM python:3.10-alpine AS builder
+FROM node:18-alpine AS builder
 
-# Set working directory
 WORKDIR /app
 
-# Install system deps
-RUN apk add --no-cache build-base libffi-dev
+COPY package*.json ./
+RUN npm install
 
-# Install Python deps
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# STAGE 2: Runtime
-
-FROM python:3.10-alpine
-
-# Create app directory
-WORKDIR /app
-
-# Copy installed packages
-COPY --from=builder /usr/local /usr/local
-
-# Copy Django project
 COPY . .
+RUN npm run build
 
-# Set environment vars
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# STAGE 2: Nginx
 
-# Expose port
-EXPOSE 8000
+FROM nginx:alpine
 
-# Run Gunicorn server
-CMD ["gunicorn", "backend.wsgi:application", "--bind", "0.0.0.0:8000"]
+COPY --from=builder /app/build /usr/share/nginx/html
+COPY ../nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
