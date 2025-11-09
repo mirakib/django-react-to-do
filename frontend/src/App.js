@@ -12,7 +12,7 @@ function App() {
 
   const fetchTodos = async () => {
     try {
-      const res = await axios.get("http://192.168.56.13:8000/api/todos/");
+      const res = await axios.get("http://192.168.178.133:8000/api/todos/");
       setTodos(res.data);
     } catch (err) {
       console.error(err);
@@ -22,7 +22,7 @@ function App() {
   const addTodo = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://192.168.56.13:8000/api/todos/", {
+      await axios.post("http://192.168.178.133:8000/api/todos/", {
         title: formData.title,
         description: formData.description,
         completed: false,
@@ -36,7 +36,7 @@ function App() {
 
   const toggleComplete = async (todo) => {
     try {
-      await axios.put(`http://192.168.56.13:8000/api/todos/${todo.id}/`, {
+      await axios.put(`http://192.168.178.133:8000/api/todos/${todo.id}/`, {
         ...todo,
         completed: !todo.completed,
       });
@@ -48,7 +48,7 @@ function App() {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://192.168.56.13:8000/api/todos/${id}/`);
+      await axios.delete(`http://192.168.178.133:8000/api/todos/${id}/`);
       fetchTodos();
     } catch (err) {
       console.error(err);
