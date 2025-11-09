@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState([]);
   const [formData, setFormData] = useState({ title: "", description: "" });
 
-  // Load todos on mount
+  // Load todos on mount and set page title
   useEffect(() => {
+    document.title = "To Do App";
     fetchTodos();
   }, []);
 
@@ -56,49 +58,63 @@ function App() {
   };
 
   return (
-    <div style={{ padding: "40px", fontFamily: "Arial" }}>
-      <h1>Django + React To-Do App</h1>
+    <div className="App">
+      <div className="App-header">
+        <div className="hero">
+          <h1>To Do App</h1>
+          <p className="small">A simple Django + React todo example</p>
+          <div className="features">
+            <div className="feature">Responsive</div>
+            <div className="feature">Minimal</div>
+          </div>
+        </div>
 
-      <form onSubmit={addTodo}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={formData.title}
-          onChange={(e) =>
-            setFormData({ ...formData, title: e.target.value })
-          }
-          required
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          value={formData.description}
-          onChange={(e) =>
-            setFormData({ ...formData, description: e.target.value })
-          }
-          required
-        />
-        <button type="submit">Add</button>
-      </form>
+        <div className="right-pane">
+          <div className="card">
+            <form onSubmit={addTodo} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+              <input
+                className="input"
+                type="text"
+                placeholder="Title"
+                value={formData.title}
+                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                required
+              />
+              <input
+                className="input"
+                type="text"
+                placeholder="Description"
+                value={formData.description}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                required
+              />
+              <button className="btn" type="submit">Add</button>
+            </form>
+          </div>
 
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            <strong
-              style={{
-                textDecoration: todo.completed ? "line-through" : "none",
-              }}
-            >
-              {todo.title}
-            </strong>{" "}
-            – {todo.description}{" "}
-            <button onClick={() => toggleComplete(todo)}>
-              {todo.completed ? "Undo" : "Complete"}
-            </button>
-            <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+          <div className="card">
+            <div className="todo-list">
+              {todos.map((todo) => (
+                <div key={todo.id} className={`todo-item ${todo.completed ? "completed" : ""}`}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                    <div style={{ fontWeight: 700 }}>{todo.title}</div>
+                    <div style={{ opacity: 0.85 }}>{todo.description}</div>
+                  </div>
+
+                  <div style={{ display: "flex", gap: 8 }}>
+                    <button className="btn" onClick={() => toggleComplete(todo)}>
+                      {todo.completed ? "Undo" : "Complete"}
+                    </button>
+                    <button className="btn" onClick={() => deleteTodo(todo.id)}>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
