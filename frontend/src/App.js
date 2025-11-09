@@ -123,7 +123,7 @@ function App() {
       </main>
       <footer className="app-footer">
         <div className="card footer-card">
-          <div className="small muted">Author: mirakib — Built with Django &amp; React</div>
+          <div className="small muted">Author: MOSHREKUL ISLAM</div>
         </div>
       </footer>
     </div>

@@ -3,8 +3,8 @@
 # To-Do App with Django and React
 For this application, React serves as the frontend, or client-side framework, handling the user interface and getting and setting data via requests to the Django backend, which is an API built using the Django REST framework (DRF). This application will allow users to create tasks and mark them as complete or incomplete.
 
-# Features
-- Create, read, update, and delete tasks
+## Features
+- Create, read and delete tasks
 - Mark tasks as complete or incomplete
 - Dockerized for easy deployment
 - Nginx as a reverse proxy for serving the application
@@ -13,40 +13,14 @@ For this application, React serves as the frontend, or client-side framework, ha
 - Python for backend development
 - Django REST framework for building the API
 
-# Prerequisites
+## Prerequisites
 - Docker and Docker Compose installed on your machine
 - Basic knowledge of Django, React, and Docker
 - Node.js and NPM installed (for frontend development)
 - Python installed (for backend development)
 - Familiarity with RESTful APIs
 
-# Getting Started
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/mirakib/django-react-to-do.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd django-react-to-do
-   ```
-3. Build and run the Docker containers:
-   ```bash
-    docker-compose up --build
-    ```
-4. Access the application:
-    - Frontend: `http://localhost:3000`
-    - Backend API: `http://localhost:8000/api/tasks/`
-5. To stop the application, run:
-6. ```bash
-   docker-compose down
-   ```
-
-# Screenshots
-
-
-
-# Project Structure
+## Project Structure
 
 ```
 .
@@ -72,6 +46,15 @@ For this application, React serves as the frontend, or client-side framework, ha
 │       └── views.py
 ├── compose.yml
 ├── frontend
+│   ├── build
+│   │   ├── asset-manifest.json
+│   │   ├── favicon.ico
+│   │   ├── index.html
+│   │   ├── logo192.png
+│   │   ├── logo512.png
+│   │   ├── manifest.json
+│   │   ├── robots.txt
+│   │   └── static
 │   ├── Dockerfile
 │   ├── nginx.conf
 │   ├── package.json
@@ -83,7 +66,6 @@ For this application, React serves as the frontend, or client-side framework, ha
 │   │   ├── logo512.png
 │   │   ├── manifest.json
 │   │   └── robots.txt
-│   ├── README.md
 │   └── src
 │       ├── App.css
 │       ├── App.js
@@ -98,9 +80,37 @@ For this application, React serves as the frontend, or client-side framework, ha
 ├── Pipfile
 ├── Pipfile.lock
 └── README.md
-
 ```
 
-# Contributing
-Contributions are welcome! Please feel free to submit a Pull Request.
+## Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mirakib/django-react-to-do.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd django-react-to-do
+   ```
+3. Build and run the Docker containers:
+   ```bash
+    docker-compose up --build
+    ```
+4. Access the application:
+    - Frontend: `http://localhost:3000`
+    - Backend API: `http://localhost:8000/api/tasks/`
+5. To stop the application, run:
+6. ```bash
+   docker-compose down
+   ```
+
+## Output Screenshot
+
+![alt text](image.png)
+
+
+## Contributing
+Contributions are welcome! Please feel free to submit a Pull Request. 
+
+
 
