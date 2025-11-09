@@ -61,6 +61,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="hero">
+          <p align="center">
+            <a href="https://skillicons.dev">
+              <img src="https://skillicons.dev/icons?i=django,react,python,nginx,docker" />
+            </a>
+          </p>
           <h1>To Do App</h1>
           <p className="small">A simple Django + React todo example</p>
         </div>
@@ -116,6 +121,11 @@ function App() {
           </div>
         </section>
       </main>
+      <footer className="app-footer">
+        <div className="card footer-card">
+          <div className="small muted">Author: mirakib — Built with Django &amp; React</div>
+        </div>
+      </footer>
     </div>
   );
 }
