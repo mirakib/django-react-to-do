@@ -59,62 +59,63 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App-header">
+      <header className="App-header">
         <div className="hero">
           <h1>To Do App</h1>
           <p className="small">A simple Django + React todo example</p>
-          <div className="features">
-            <div className="feature">Responsive</div>
-            <div className="feature">Minimal</div>
-          </div>
         </div>
+      </header>
 
-        <div className="right-pane">
-          <div className="card">
-            <form onSubmit={addTodo} style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <input
-                className="input"
-                type="text"
-                placeholder="Title"
-                value={formData.title}
-                onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                required
-              />
-              <input
-                className="input"
-                type="text"
-                placeholder="Description"
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                required
-              />
-              <button className="btn" type="submit">Add</button>
-            </form>
-          </div>
-
-          <div className="card">
-            <div className="todo-list">
-              {todos.map((todo) => (
-                <div key={todo.id} className={`todo-item ${todo.completed ? "completed" : ""}`}>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-                    <div style={{ fontWeight: 700 }}>{todo.title}</div>
-                    <div style={{ opacity: 0.85 }}>{todo.description}</div>
-                  </div>
-
-                  <div style={{ display: "flex", gap: 8 }}>
-                    <button className="btn" onClick={() => toggleComplete(todo)}>
-                      {todo.completed ? "Undo" : "Complete"}
-                    </button>
-                    <button className="btn" onClick={() => deleteTodo(todo.id)}>
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              ))}
+      <main className="main-grid">
+        <section className="card form-card">
+          <h2 className="small">Add a task</h2>
+          <form className="todo-form" onSubmit={addTodo}>
+            <input
+              className="input input-flex"
+              type="text"
+              placeholder="Title"
+              value={formData.title}
+              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+              required
+            />
+            <input
+              className="input input-flex"
+              type="text"
+              placeholder="Description"
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              required
+            />
+            <div className="form-actions">
+              <button className="btn btn-neutral" type="submit">Add</button>
             </div>
+          </form>
+        </section>
+
+        <section className="card list-card">
+          <h2 className="small">To‑Do List</h2>
+          <div className="todo-list">
+            {todos.length === 0 && <div className="muted">No todos yet</div>}
+            {todos.map((todo) => (
+              <div key={todo.id} className={`todo-item ${todo.completed ? "completed" : ""}`}>
+                <div className="todo-main">
+                  <div className="todo-title">{todo.title}</div>
+                  <div className="todo-desc">{todo.description}</div>
+                </div>
+
+                <div className="todo-actions">
+                  <button className="btn btn-neutral" onClick={() => toggleComplete(todo)}>
+                    {todo.completed ? "Undo" : "Complete"}
+                  </button>
+                  <button className="btn btn-neutral" onClick={() => deleteTodo(todo.id)}>
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 }
